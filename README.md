@@ -5,8 +5,6 @@
 - Supports multiple languages
 - Supports Send Email in Queue
 
-This project includes a simple server-side. So it is very easy for you to download and run.
-
 ## Installation
   - Run `bower install`
   - Run `npm install`

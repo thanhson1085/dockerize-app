@@ -71,7 +71,7 @@ module.exports = function (grunt) {
                 name: 'DockerizeApp',
                 deps: ['oc.lazyLoad', 'ui.router', 'ui.bootstrap', 
                     'angular-loading-bar', 'ngCookies', 'ngFileUpload', 
-                    'ngAnimate', 'xeditable',
+                    'ngAnimate', 'xeditable', 'ui.ace',
                     'pascalprecht.translate', 'tmh.dynamicLocale'],
                 dest: 'app/scripts/config.js',
                 constants: {

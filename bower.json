@@ -36,6 +36,7 @@
     "angular-translate-handler-log": "~2.7.2",
     "angular-translate-loader-static-files": "~2.7.2",
     "angular-translate-storage-local": "~2.7.2",
+    "angular-ui-ace": "~0.2.3",
     "angular-ui-router": "~0.2.15",
     "angular-xeditable": "~0.1.9",
     "bootstrap": "~3.3.5",

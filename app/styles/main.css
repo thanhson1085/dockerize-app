@@ -91,3 +91,6 @@ background-color: #eee;
     bottom: 20px !important;
     left: 20px !important;
 }
+.ace_editor { 
+    height: 300px; 
+}

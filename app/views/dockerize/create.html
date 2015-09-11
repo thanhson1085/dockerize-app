@@ -15,64 +15,64 @@
     <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
-            <div class="panel-heading">
-                Basic Form Elements
+            <div class="panel-heading" translate="views.dockerize.create.SelectCompoments">
             </div>
             <div class="panel-body">
                 <div class="row">
                     <div class="col-lg-6">
                         <form role="form">
                             <div class="form-group">
-                                <label>Text Input</label>
+                                <label translate="views.dockerize.create.Name"></label>
                                 <input class="form-control">
-                                <p class="help-block">Example block-level help text here.</p>
                             </div>
                             <div class="form-group">
-                                <label>Text Input with Placeholder</label>
+                                <label translate="views.dockerize.create.Email"></label>
                                 <input class="form-control" placeholder="Enter text">
                             </div>
                             <div class="form-group">
-                                <label>Static Control</label>
-                                <p class="form-control-static">email@example.com</p>
-                            </div>
-                            <div class="form-group">
-                                <label>Radio Buttons</label>
+                                <label translate="views.dockerize.create.OperationSystem"></label>
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">Radio 1
+                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">Ubuntu 14.04
                                     </label>
                                 </div>
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Radio 2
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Radio 3
+                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Centos 7
                                     </label>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>Checkboxes</label>
-                                <div class="checkbox">
+                                <label translate="views.dockerize.create.WebServer"></label>
+                                <div class="radio">
                                     <label>
-                                        <input type="checkbox" value="">Checkbox 1
+                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">Nginx
                                     </label>
                                 </div>
-                                <div class="checkbox">
+                                <div class="radio">
                                     <label>
-                                        <input type="checkbox" value="">Checkbox 2
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" value="">Checkbox 3
+                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Apache2
                                     </label>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-default">Submit Button</button>
-                            <button type="reset" class="btn btn-default">Reset Button</button>
+                            <div class="form-group">
+                                <label translate="views.dockerize.create.Others"></label>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="">Mysql
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="">Redis
+                                    </label>
+                                </div>
+                            </div>
+			    <div class="form-group" style="float: right">
+				<a class="btn btn-block btn-success" style="text-align: right" ui-sref="dockerize.confirm">
+				    <i class="fa fa-paper-plane"></i> <span translate="views.dockerize.github.Next"></span>
+				</a>
+			    </div>
                         </form>
                     </div>
                 </div>
@@ -83,11 +83,6 @@
         <!-- /.panel -->
     </div>
     <!-- /.col-lg-12 -->
-    </div>
-    <div class="row" style="float: right">
-        <a class="btn btn-block btn-success" style="text-align: right" ui-sref="dockerize.confirm">
-            <i class="fa fa-paper-plane"></i> <span translate="views.dockerize.github.Next"></span>
-        </a>
     </div>
 </div>
 <!-- container -->

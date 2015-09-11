@@ -16,8 +16,5 @@ This project includes a simple server-side. So it is very easy for you to downlo
   - Run `npm start`
   - Run `grunt test` to make sure the application work perfectly
 
-Based on [angular-admin-seed](https://github.com/thanhson1085/angular-admin-seed)
 ## License MIT
 Copyright (c) 2015
-
-

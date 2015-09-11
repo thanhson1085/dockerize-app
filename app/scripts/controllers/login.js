@@ -17,7 +17,7 @@ angular.module('DockerizeApp')
                 $rootScope.user_info = data;
                 $cookies.put('user_info', JSON.stringify(data));
                 vm.error = null;
-                $location.path('/dashboard/home');
+                $location.path('/dockerize/start');
             }).catch(function(){
                 vm.error = 'Access Denied!';
             });

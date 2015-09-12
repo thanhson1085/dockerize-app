@@ -3,6 +3,7 @@ var express = require('express'),
     router = express.Router(), 
     crypto = require('crypto'),
     db = require('../models'),
+    request = require('request'),
     pass = require('../helpers/password.js');
 
 // list users
@@ -19,6 +20,12 @@ router.get('/list/:page/:limit', function(req, res){
     });
 });
 
+// new user
+router.post('/github', function(req, res){
+    request.post({url: req.body.request_url, form: req.body, json: true}, function(err,httpResponse,body){ 
+        res.send(JSON.stringify(body));
+    });
+});
 // new user
 router.post('/create', function(req, res){
     var hash = pass.hash(req.body.password);

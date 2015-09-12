@@ -12,22 +12,15 @@
             </div>
         </div>
     </div>
-    <hr>
-    <div class="row">
-        <div class="col-xs-9">test/repo </div>
-        <div class="col-xs-3">
-            <a class="" ui-sref="dockerize.create">
-                <i class="fa fa-paper-plane"></i> <span translate="views.dockerize.github.Dockerize"></span>
-            </a>
-        </div>
-    </div>
-    <hr>
-    <div class="row">
-        <div class="col-xs-9">test/repo </div>
-        <div class="col-xs-3">
-            <a class="" ui-sref="dockerize.create">
-                <i class="fa fa-paper-plane"></i> <span translate="views.dockerize.github.Dockerize"></span>
-            </a>
+    <div ng-repeat="repo in repos">
+        <hr>
+        <div class="row">
+            <div class="col-xs-9"><a target="_blank" ng-href="{{ repo.html_url }}">{{ repo.full_name }}</a></div>
+            <div class="col-xs-3">
+                <a class="" ui-sref="dockerize.create">
+                    <i class="fa fa-paper-plane"></i> <span translate="views.dockerize.github.Dockerize"></span>
+                </a>
+            </div>
         </div>
     </div>
 </div>

@@ -125,7 +125,8 @@ angular
                             'scripts/directives/sidebar/sidebar-search/sidebar-search.js',
                             'scripts/services/httpi.js',
                             'scripts/services/locale.js',
-                            'scripts/directives/locale/locale.js'
+                            'scripts/directives/locale/locale.js',
+                            'scripts/services/github.js'
                         ]
                     });
             }
@@ -145,6 +146,7 @@ angular
     })
     .state('dockerize.github', {
         url:'/github',
+        controller:'GithubCtrl',
         templateUrl: 'views/dockerize/github.html',
         resolve: {
             loadMyDirectives:function($ocLazyLoad){

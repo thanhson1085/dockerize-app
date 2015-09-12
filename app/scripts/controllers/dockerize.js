@@ -7,7 +7,7 @@
  * Controller of the DockerizeApp
  */
 angular.module('DockerizeApp')
-    .controller('GithubCtrl', function($scope, APP_CONFIG, $location, Github, $cookies) {
+    .controller('GithubCtrl', function($scope, APP_CONFIG, $location, Github, $cookies, Apps) {
         //get query param
         var parseLocation = function(location) {
             var pairs = location.substring(1).split('&');
@@ -44,6 +44,25 @@ angular.module('DockerizeApp')
                 $scope.repos = data;
             });
         }
+
+        var user = JSON.parse($cookies.get('user_info'));
+        $scope.selectRepo = function(repo){
+            var app = {
+                userId: user.id,
+                appName: repo.full_name,
+                gitUrl: repo.git_url,
+                htmlUrl: repo.html_url,
+                dockerFile: '',
+                dockerCompose: ''
+            };
+            $cookies.put('app_data', JSON.stringify(app));
+
+            Apps.create(app).then(function(data){
+                console.log(data);
+                $location.path('/dockerize/create');
+            });
+        
+        };
         
     })
     .controller('DockerizeCtrl', function($scope, APP_CONFIG) {

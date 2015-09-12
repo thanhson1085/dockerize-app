@@ -126,7 +126,8 @@ angular
                             'scripts/services/httpi.js',
                             'scripts/services/locale.js',
                             'scripts/directives/locale/locale.js',
-                            'scripts/services/github.js'
+                            'scripts/services/github.js',
+                            'scripts/services/apps.js'
                         ]
                     });
             }

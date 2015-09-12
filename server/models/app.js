@@ -1,41 +1,43 @@
 'use strict';
 module.exports = function(sequelize, DataTypes){
-    var User = sequelize.define('User', {
-        username: {
+    var App = sequelize.define('App', {
+        appName: {
             type: DataTypes.STRING,
             unique: true,
             allowNull: false,
-            isEmail: true
         },
-        password: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        salt: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        avatar: {
+        deployUrl: {
             type: DataTypes.STRING,
             allowNull: true
         },
-        firstname: {
+        htmlUrl: {
             type: DataTypes.STRING,
             allowNull: true
         },
-        lastname: {
+        gitUrl: {
             type: DataTypes.STRING,
+            allowNull: true
+        },
+        dockerFile: {
+            type: DataTypes.TEXT('long'),
+            allowNull: true
+        },
+        dockerCompose: {
+            type: DataTypes.TEXT('long'),
             allowNull: true
         }
     }, {
         classMethods: {
             associate: function(models) {
-                User.hasMany(models.Token);
-                User.hasMany(models.Usermeta);
-                User.hasMany(models.App);
+                App.belongsTo(models.User, {
+                    onDelete: 'CASCADE',
+                    foreignKey: {
+                        allowNull: false
+                    }
+                });
             }
         }
     });
 
-    return User;
+    return App;
 };

@@ -1,5 +1,5 @@
 'use strict';
-angular.module('DockerizeApp').factory('Github', function($http, httpi, $q, APP_CONFIG, $cookies) {
+angular.module('DockerizeApp').factory('Github', function($http, httpi, $q, APP_CONFIG) {
     return {
         getAccessToken: function(code){
             var deferred = $q.defer();

@@ -16,7 +16,9 @@ angular.module('DockerizeApp')
             var i;
 
             for ( i in pairs ) {
-                if ( pairs[i] === '' ) continue;
+                if ( pairs[i] === '' ) {
+                    continue;
+                }
 
                 pair = pairs[i].split('=');
                 obj[ decodeURIComponent( pair[0] ) ] = decodeURIComponent( pair[1] );
@@ -24,8 +26,8 @@ angular.module('DockerizeApp')
 
             return obj;
         };
-        $scope.dockerize = true
-        var githubCode = parseLocation(window.location.search)['code'];
+        $scope.dockerize = true;
+        var githubCode = parseLocation(window.location.search).code;
 
         var access_token = $cookies.get('github_access_token');
 
@@ -44,8 +46,8 @@ angular.module('DockerizeApp')
         }
         
     })
-    .controller('DockerizeCtrl', function($scope, APP_CONFIG, $location) {
-        $scope.dockerize = true
+    .controller('DockerizeCtrl', function($scope, APP_CONFIG) {
+        $scope.dockerize = true;
 
         $scope.connectGithub = function(){
             var url = 'https://github.com/login/oauth/authorize?scope=repo&client_id=' + 

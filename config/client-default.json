@@ -5,7 +5,8 @@
             "login": "http://192.168.1.191:3000/api/v1/users/login",
             "get": "http://192.168.1.191:3000/api/v1/users/view/:id",
             "create": "http://192.168.1.191:3000/api/v1/users/create",
-            "update": "http://192.168.1.191:3000/api/v1/users/update/:id"
+            "update": "http://192.168.1.191:3000/api/v1/users/update/:id",
+            "github": "http://192.168.1.191:3001/api/v1/users/github"
         }
     },
     "pagination":{
@@ -17,6 +18,11 @@
             "en_US": "English"
         },
         "preferredLocale": "en_US"
+    },
+    "github": {
+        "client_id": "",
+        "client_secret": "",
+        "redirect_url": ""
     },
     "debug_mode": true
 }

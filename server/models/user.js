@@ -32,6 +32,7 @@ module.exports = function(sequelize, DataTypes){
             associate: function(models) {
                 User.hasMany(models.Token);
                 User.hasMany(models.Usermeta);
+                User.hasMany(models.App);
             }
         }
     });

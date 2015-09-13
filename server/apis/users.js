@@ -1,5 +1,6 @@
 'use strict';
 var express = require('express'), 
+    config = require('config'),
     router = express.Router(), 
     crypto = require('crypto'),
     db = require('../models'),
@@ -22,6 +23,7 @@ router.get('/list/:page/:limit', function(req, res){
 
 // new user
 router.post('/github', function(req, res){
+    req.body.client_secret = config.get('github.client_secret');
     request.post({url: req.body.request_url, form: req.body, json: true}, function(err,httpResponse,body){ 
         res.send(JSON.stringify(body));
     });

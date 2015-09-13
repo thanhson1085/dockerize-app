@@ -86,7 +86,11 @@ angular.module('DockerizeApp')
         $scope.workdir = '/build';
         $scope.command = '/bin/bash';
 
-        $scope.appData = JSON.parse($cookies.get('app_data'));
+        try{
+            $scope.appData = JSON.parse($cookies.get('app_data'));
+        } catch(e) {
+            $scope.appData = {};
+        }
 
         $scope.createDocker = function(){
             var dockerFile =  'FROM ' + $scope.osSelected + '\n' +

@@ -16,6 +16,9 @@
         "password": ""
     },
     "unauthorization": ["/api/v1/users/login", "/api/v1/users/create"],
+    "github": {
+        "client_secret": ""
+    },
     "mailer": {
         "from": "no-reply@example.com",
         "host": "smtp.gmail.com",

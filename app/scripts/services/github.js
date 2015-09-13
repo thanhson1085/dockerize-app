@@ -9,7 +9,6 @@ angular.module('DockerizeApp').factory('Github', function($http, httpi, $q, APP_
                 code: code,
                 request_url: request_url,
                 client_id: APP_CONFIG.github.client_id,
-                client_secret: APP_CONFIG.github.client_secret,
                 redirect_url: APP_CONFIG.github.redirect_uri
             };
             $http({

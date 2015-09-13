@@ -28,7 +28,6 @@
     },
     "github": {
         "client_id": "",
-        "client_secret": "",
         "redirect_url": ""
     },
     "debug_mode": true

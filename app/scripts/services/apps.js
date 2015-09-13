@@ -70,6 +70,18 @@ angular.module('DockerizeApp').factory('Apps', function($http, httpi, $q, APP_CO
                 deferred.resolve(data);
             }).error(deferred.reject);
             return deferred.promise;
+        },
+        getByAppName: function(name){
+            var deferred = $q.defer();
+            var url = APP_CONFIG.services.apps.getByAppName;
+            httpi({
+                method: 'GET',
+                url: url,
+                data: {appName : name}
+            }).success(function(data) {
+                deferred.resolve(data);
+            }).error(deferred.reject);
+            return deferred.promise;
         }
     };
 });

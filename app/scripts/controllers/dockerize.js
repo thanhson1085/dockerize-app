@@ -55,23 +55,111 @@ angular.module('DockerizeApp')
                 dockerFile: '',
                 dockerCompose: ''
             };
-            $cookies.put('app_data', JSON.stringify(app));
 
             Apps.create(app).then(function(data){
-                console.log(data);
+                if ('id' in data === false){
+                    throw 500
+                }
+                app.id = data.id;
+                $cookies.put('app_data', JSON.stringify(app));
                 $location.path('/dockerize/create');
+            }).catch(function(){
+                Apps.getByAppName(encodeURI(app.appName)).then(function(data){
+                    app.id = data.id;
+                    $cookies.put('app_data', JSON.stringify(app));
+                    $location.path('dockerize/create');
+                });
             });
         
         };
         
     })
-    .controller('DockerizeCtrl', function($scope, APP_CONFIG) {
+    .controller('DockerizeCtrl', function($scope, APP_CONFIG, $cookies, $location, Apps) {
         $scope.dockerize = true;
 
         $scope.connectGithub = function(){
             var url = 'https://github.com/login/oauth/authorize?scope=repo&client_id=' + 
                     APP_CONFIG.github.client_id + '&redirect_url=' + APP_CONFIG.github.redirect_uri;
             window.location.replace(url);
+        };
+
+        $scope.workdir = '/build';
+        $scope.command = '/bin/bash';
+
+        $scope.appData = JSON.parse($cookies.get('app_data'));
+
+        $scope.createDocker = function(){
+            var dockerFile =  'FROM ' + $scope.osSelected + '\n' +
+                'MAINTAIN Docker Hanoi \n' +
+                'RUN apt-get update && apt-get install -y ' +
+                $scope.depSelected.join(' ') + '\n' +
+                'WORKDIR ' + $scope.workdir + '\n' +
+                'CMD ' + $scope.command;
+
+            var link = '  links:\n';
+            for (var l in $scope.linkSelected){
+                link += '   - ' + $scope.linkSelected[l] + '\n';
+            }
+            for (var l in $scope.linkSelected){
+                link += $scope.linkSelected[l] + ':\n' + 
+                    '  image: ' + $scope.linkSelected[l] + ':latest\n';
+            }
+            var dockerCompose = 'app:\n' + 
+                '  build: ./\n' +
+                '  ports:\n' +
+                '    - ' + $scope.exposeSelected + '\n' + link;
+
+            $scope.appData = JSON.parse($cookies.get('app_data'));
+
+            $scope.appData.dockerFile = dockerFile;
+            $scope.appData.dockerCompose = dockerCompose;
+            $location.path('/dockerize/confirm');
+        }
+
+        // save infor to database
+        $scope.finish = function(){
+            Apps.update($scope.appData).then(function(data){
+                $location.path('/dashboard/app/view/' + data.id);
+            });
+        };
+        // auto complete form
+        $scope.listOs = ['Ubuntu:14.04', 'Ubuntu:12.04', 'Centos:6', 'Centos:7'];
+        $scope.listDep = ['Apache2', 'Nginx', 'NodeJS 0.10.25', 'NodeJS 0.8'];
+        $scope.listLink = ['Mysql', 'Redis', 'PostgreSQL', 'Cassandra', 'MongoDB'];
+        $scope.listExpose = ['80:80', '8080:8080', '3000:3000', '9000:9000'];
+
+        $scope.linkSelected = [];
+        $scope.depSelected = [];
+        $scope.emply - '';
+        $scope.selectOs = function(item){
+            try{
+                $scope.osSelected = item.toLowerCase();
+            } catch(e){}
+        };
+        $scope.selectExpose = function(item){
+            try{
+                $scope.exposeSelected = item.toLowerCase();
+            } catch(e){}
+        };
+        $scope.selectDep = function(item){
+            try{
+                $scope.depSelected.push(item.toLowerCase());
+            } catch(e){}
+        };
+        $scope.removeDep = function(index){
+            try{
+                $scope.depSelected.splice(index, 1);
+            } catch(e){}
+        };
+        $scope.selectLink = function(item){
+            try{
+                $scope.linkSelected.push(item.toLowerCase());
+            } catch(e){}
+        };
+        $scope.removeLink = function(index){
+            try{
+                $scope.linkSelected.splice(index, 1);
+            } catch(e){}
         };
 
     });

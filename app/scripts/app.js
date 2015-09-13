@@ -59,6 +59,7 @@ angular
                             'scripts/services/users.js',
                             'scripts/services/httpi.js',
                             'scripts/services/locale.js',
+                            'scripts/services/storage.js',
                             'scripts/directives/locale/locale.js'
                         ]
                     });
@@ -101,6 +102,7 @@ angular
                             'scripts/directives/sidebar/sidebar-search/sidebar-search.js',
                             'scripts/services/httpi.js',
                             'scripts/services/locale.js',
+                            'scripts/services/apps.js',
                             'scripts/directives/locale/locale.js'
                         ]
                     });
@@ -203,6 +205,22 @@ angular
                     {
                         name:'DockerizeApp',
                     });
+            }
+        }
+    })
+    .state('dashboard.app_view',{
+        templateUrl:'views/apps/view.html',
+        controller:'ViewAppCtrl',
+        url:'/app/view/:id',
+        resolve: {
+            loadMyFiles:function($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name:'DockerizeApp',
+                    files:[
+                        'scripts/controllers/apps.js',
+                        'scripts/services/apps.js',
+                    ]
+                });
             }
         }
     })

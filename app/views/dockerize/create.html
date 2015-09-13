@@ -17,54 +17,43 @@
             <div class="row">
                 <form role="form">
                     <div class="form-group">
-                        <label translate="views.dockerize.create.Name"></label>
-                        <input class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label translate="views.dockerize.create.Email"></label>
-                        <input class="form-control" placeholder="Enter text">
-                    </div>
-                    <div class="form-group">
                         <label translate="views.dockerize.create.OperationSystem"></label>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">Ubuntu 14.04
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Centos 7
-                            </label>
+                        <input type="text" name="os" class="form-control" ng-model="os" placeholder="OS" typeahead="o as o for o in listOs" typeahead-on-select="selectOs($item, $model, $label)" typeahead-no-results="noResults" required>
+                    </div>
+                    <div class="form-group">
+                        <label translate="views.dockerize.create.Dependencies"></label>
+                        <input type="text" name="dependency" ng-model="dep" class="form-control" placeholder="Name Of Dependencies"  typeahead-on-select="selectDep($item, $model, $label)" typeahead="dep as dep for dep in listDep" typeahead-no-results="noResults" required>
+                    </div>
+                    <div class="form-group">
+                        <div class="alert alert-info alert-dismissable" ng-repeat="depItem in depSelected track by $index">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true" ng-click="removeDep($index)">×</button>
+                            <span>{{ depItem }}</span>  
                         </div>
                     </div>
                     <div class="form-group">
-                        <label translate="views.dockerize.create.WebServer"></label>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">Nginx
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Apache2
-                            </label>
-                        </div>
+                        <label translate="views.dockerize.create.WorkDirectory"></label>
+                        <input type="text" name="command" class="form-control"  ng-model="workdir" value="/build">
                     </div>
                     <div class="form-group">
-                        <label translate="views.dockerize.create.Others"></label>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">Mysql
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">Redis
-                            </label>
+                        <label translate="views.dockerize.create.Expose"></label>
+                        <input type="text" name="expose" ng-model="expose" class="form-control" placeholder="e.g 80:80" typeahead-on-select="selectExpose($item, $model, $label)" typeahead="expose as expose for expose in listExpose" typeahead-no-results="noResults" required>
+                    </div>
+                    <div class="form-group">
+                        <label translate="views.dockerize.create.Command"></label>
+                        <input type="text" name="command" class="form-control" ng-model="command" value="/bin/bash">
+                    </div>
+                    <div class="form-group">
+                        <label translate="views.dockerize.create.Links"></label>
+                        <input type="text" name="link" ng-model="link" class="form-control" placeholder="e.g Mysql, Redis" typeahead-on-select="selectLink($item, $model, $label)" typeahead="link as link for link in listLink" typeahead-no-results="noResults" required>
+                    </div>
+                    <div class="form-group">
+                        <div class="alert alert-info alert-dismissable" ng-repeat="linkItem in linkSelected track by $index">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true" ng-click="removeLink($index)">×</button>
+                            <span>{{ linkItem }}</span>  
                         </div>
                     </div>
                     <div class="form-group" style="float: right">
-                        <a class="btn btn-block btn-success" style="text-align: right" ui-sref="dockerize.confirm">
+                        <a class="btn btn-block btn-success" style="text-align: right" ng-click="createDocker()">
                             <i class="fa fa-paper-plane"></i> <span translate="views.dockerize.github.Next"></span>
                         </a>
                     </div>

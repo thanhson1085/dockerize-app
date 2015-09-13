@@ -10,6 +10,18 @@ module.exports = function(sequelize, DataTypes){
             type: DataTypes.STRING,
             allowNull: true
         },
+        awsAccessKeyId: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        awsSecretAccessKey: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        awsVpsId: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
         htmlUrl: {
             type: DataTypes.STRING,
             allowNull: true

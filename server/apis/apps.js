@@ -47,10 +47,22 @@ router.get('/view/:id', function(req, res){
         res.status(500).send(JSON.stringify(e));
     });
 });
+// get app by app name
+router.get('/getByAppName', function(req, res){
+    db.App.findOne({
+        where: {
+            appName: req.query.appName
+        }
+    }).then(function(app){
+        res.send(JSON.stringify(app));
+    }).catch(function(e){
+        res.status(500).send(JSON.stringify(e));
+    });
+});
 
 // update app
 router.put('/update/:id', function(req, res){
-    db.User.find({ 
+    db.App.find({ 
         where: {
             id: req.params.id
         } 
@@ -61,7 +73,10 @@ router.put('/update/:id', function(req, res){
                 gitUrl: req.body.gitUrl,
                 htmlUrl: req.body.htmlUrl,
                 dockerFile: req.body.dockerFile,
-                dockerCompose: req.body.dockerCompose
+                dockerCompose: req.body.dockerCompose,
+                awsAccessKeyId: req.body.awsAccessKeyId,
+                awsSecretAccessKey: req.body.awsSecretAccessKey,
+                awsVpcId: req.body.awsVpcId
             }).then(function() {
                 res.send(JSON.stringify(app));
             });

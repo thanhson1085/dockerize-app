@@ -14,21 +14,15 @@
     </div>
     <div class="row" style="margin-bottom: 20px;">
     <section>
-        <strong>Dockerfile:</strong>
-        <div ui-ace="">
-FROM ubuntu:14.04
-MAINTAIN Nguyen Sy Thanh Son
+        <strong translate="views.dockerize.confirm.DockerFile"></strong>
+        <div ui-ace="" ng-model="appData.dockerFile">
         </div>
     </section>
     </div>
     <div class="row" style="margin-bottom: 20px;">
     <section>
-        <strong>Docker Compose</strong>
-        <div ui-ace="">
-web:
-    build: /build
-redis:
-    image: redis
+        <strong translate="views.dockerize.confirm.DockerCompose"></strong>
+        <div ui-ace="" ng-model="appData.dockerCompose">
         </div>
     </div>
     </section>

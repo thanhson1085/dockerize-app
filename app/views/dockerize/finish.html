@@ -12,8 +12,9 @@
             </div>
         </div>
     </div>
+    <div>{{ appData | json}}</div>
     <div class="row" style="float: right">
-        <a class="btn btn-block btn-success" style="text-align: right" ui-sref="dashboard">
+        <a class="btn btn-block btn-success" style="text-align: right" ng-click="finish()">
             <i class="fa fa-paper-plane"></i> <span translate="views.dockerize.github.Next"></span>
         </a>
     </div>

@@ -16,7 +16,15 @@
   - Run `grunt test` to make sure the application work perfectly
 
 ## Demo
-[Dockerize your Application](http://ec2-52-74-0-120.ap-southeast-1.compute.amazonaws.com:9001)
+[Dockerize your Application](http://ec2-52-74-0-120.ap-southeast-1.compute.amazonaws.com)
+
+The scenario for demo:
+- Login (register an account firstly)
+- Connect your account to Github
+- Create Dockerfile, Docker Compose for your source code
+- Add AWS account for deployment
+- Run build & view logs
+
 
 ## License MIT
 Copyright (c) 2015

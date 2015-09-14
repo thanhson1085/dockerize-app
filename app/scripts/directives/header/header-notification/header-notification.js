@@ -14,8 +14,14 @@ angular.module('DockerizeApp')
         replace: true,
         scope: {
         },
-        controller: function($scope, Apps, $location) {
-            Apps.list(1,10).then(function(data){
+        controller: function($scope, Apps, $location, $cookies) {
+            try{
+                var userInfo = JSON.parse($cookies.get('user_info'));
+            } catch(e) {
+                $location.path('/login');
+            }
+
+            Apps.list(userInfo.id, 1,10).then(function(data){
                 $scope.apps = data.rows;
             });
         }

@@ -41,6 +41,19 @@ app.use(function(req, res, next){
 app.use(require('./middlewares/users'));
 app.use(require('./apis'));
 
+
+// websocket 
+var expressWs = require('express-ws')(app);
+app.ws('/', function(ws, req) {
+    ws.on('message', function(msg) {
+        console.log('fadsfl');
+    });
+    ws.on('connection', function (socket) {
+        socket.emit('files', 'test');
+    });
+    console.log('socket', 'test');
+});
+
 // Start web server at port 3000
 db.sequelize.sync().then(function () {
     var port = config.get('server.port');

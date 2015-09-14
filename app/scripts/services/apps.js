@@ -1,10 +1,11 @@
 'use strict';
 angular.module('DockerizeApp').factory('Apps', function($http, httpi, $q, APP_CONFIG) {
     return {
-        list: function(page, limit){
+        list: function(UserId, page, limit){
             var deferred = $q.defer();
             var url = APP_CONFIG.services.apps.list;
             var data = {
+                UserId: UserId,
                 page: page,
                 limit: limit
             };

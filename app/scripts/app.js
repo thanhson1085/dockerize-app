@@ -224,6 +224,23 @@ angular
             }
         }
     })
+    .state('dashboard.app_deploy',{
+        templateUrl:'views/apps/deploy.html',
+        controller:'DeployAppCtrl',
+        url:'/app/deploy/:id',
+        resolve: {
+            loadMyFiles:function($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name:'DockerizeApp',
+                    files:[
+                        'scripts/controllers/apps.js',
+                        'scripts/services/apps.js',
+                        'scripts/services/websocket.js'
+                    ]
+                });
+            }
+        }
+    })
     .state('dashboard.home',{
         url:'/home',
         templateUrl:'views/dashboard/home.html',

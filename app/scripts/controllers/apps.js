@@ -21,4 +21,13 @@ angular.module('DockerizeApp')
         });
     };
     $scope.forUnitTest = true;
+})
+.controller('DeployAppCtrl', function($scope, $stateParams, Apps, Websocket) {
+    Apps.get($stateParams.id).then(function(data){
+        $scope.app = data;
+    });
+
+    $scope.logData = Websocket;
+
+    $scope.forUnitTest = true;
 });

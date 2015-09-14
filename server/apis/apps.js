@@ -22,11 +22,15 @@ router.post('/create', function(req, res){
 });
 
 // list app
-router.get('/list/:page/:limit', function(req, res){
+router.get('/list/:UserId/:page/:limit', function(req, res){
     var limit = (req.params.limit)? req.params.limit: 10;
     var offset = (req.params.page)? limit * (req.params.page - 1): 0;
+    var UserId = req.params.UserId;
     db.App.findAndCountAll({
         include: [],
+        where:{
+            UserId: UserId
+        },
         limit: limit,
         offset: offset
 
@@ -43,6 +47,21 @@ router.get('/view/:id', function(req, res){
         }
     }).then(function(app){
         res.send(JSON.stringify(app));
+    }).catch(function(e){
+        res.status(500).send(JSON.stringify(e));
+    });
+});
+
+// deploy app
+router.get('/deploy/:id', function(req, res){
+    db.App.findOne({
+        where: {
+            id: req.params.id
+        }
+    }).then(function(app){
+        var q = require('../queues');
+        q.create('deploy', app).priority('high').save();
+        res.send(JSON.stringify());
     }).catch(function(e){
         res.status(500).send(JSON.stringify(e));
     });

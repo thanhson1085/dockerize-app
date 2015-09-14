@@ -16,7 +16,7 @@
   - Run `grunt test` to make sure the application work perfectly
 
 ## Demo
-[Dockerize your Application](http://dockerize-app.sonnguyen.ws)
+[Dockerize your Application](http://ec2-52-74-0-120.ap-southeast-1.compute.amazonaws.com:9001)
 
 ## License MIT
 Copyright (c) 2015

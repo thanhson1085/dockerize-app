@@ -1,5 +1,5 @@
 'use strict';
-angular.module('DockerizeApp').factory('Storage', function($cookies, $q, APP_CONFIG) {
+angular.module('DockerizeApp').factory('Storage', function($cookies) {
     return {
         clear: function(){
             $cookies.remove('user_info');

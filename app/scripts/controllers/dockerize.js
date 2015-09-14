@@ -58,7 +58,7 @@ angular.module('DockerizeApp')
 
             Apps.create(app).then(function(data){
                 if ('id' in data === false){
-                    throw 500
+                    throw 500;
                 }
                 app.id = data.id;
                 $cookies.put('app_data', JSON.stringify(app));
@@ -104,7 +104,7 @@ angular.module('DockerizeApp')
             for (var l in $scope.linkSelected){
                 link += '   - ' + $scope.linkSelected[l] + '\n';
             }
-            for (var l in $scope.linkSelected){
+            for (l in $scope.linkSelected){
                 link += $scope.linkSelected[l] + ':\n' + 
                     '  image: ' + $scope.linkSelected[l] + ':latest\n';
             }
@@ -118,7 +118,7 @@ angular.module('DockerizeApp')
             $scope.appData.dockerFile = dockerFile;
             $scope.appData.dockerCompose = dockerCompose;
             $location.path('/dockerize/confirm');
-        }
+        };
 
         // save infor to database
         $scope.finish = function(){
@@ -134,7 +134,6 @@ angular.module('DockerizeApp')
 
         $scope.linkSelected = [];
         $scope.depSelected = [];
-        $scope.emply - '';
         $scope.selectOs = function(item){
             try{
                 $scope.osSelected = item.toLowerCase();

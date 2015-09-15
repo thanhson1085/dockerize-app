@@ -44,6 +44,8 @@ module.exports = function(config) {
       'bower_components/angular-translate-handler-log/angular-translate-handler-log.js',
       'bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js',
       'bower_components/angular-ui-ace/ui-ace.js',
+      'bower_components/angular-websocket/angular-websocket.js',
+
       'app/scripts/config.js',
       'app/scripts/app.js',
       'app/scripts/**/*.js',

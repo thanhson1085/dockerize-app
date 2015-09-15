@@ -4,6 +4,7 @@ var express = require('express'),
 
 router.use('/api/v1/users', require('./users'));
 router.use('/api/v1/apps', require('./apps'));
+router.use('/api/v1/deploys', require('./deploys'));
 
 // nothing for root
 router.get('/', function(req, res){

@@ -1,10 +1,14 @@
 'use strict';
 module.exports = function(sequelize, DataTypes){
-    var App = sequelize.define('App', {
-        appName: {
+    var Deploy = sequelize.define('Deploy', {
+        deployStatus: {
             type: DataTypes.STRING,
             unique: true,
             allowNull: false,
+        },
+        logFile: {
+            type: DataTypes.STRING,
+            allowNull: true
         },
         deployUrl: {
             type: DataTypes.STRING,
@@ -45,16 +49,15 @@ module.exports = function(sequelize, DataTypes){
     }, {
         classMethods: {
             associate: function(models) {
-                App.belongsTo(models.User, {
+                Deploy.belongsTo(models.App, {
                     onDelete: 'CASCADE',
                     foreignKey: {
                         allowNull: false
                     }
                 });
-                App.hasMany(models.Deploy);
             }
         }
     });
 
-    return App;
+    return Deploy;
 };

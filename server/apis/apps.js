@@ -1,6 +1,7 @@
 'use strict';
 var express = require('express'), 
     router = express.Router(), 
+    config = require('config'),
     db = require('../models');
 
 // new app
@@ -14,8 +15,18 @@ router.post('/create', function(req, res){
         dockerFile: req.body.dockerFile,
         dockerCompose: req.body.dockerCompose
     }).then(function(app){
+        var fs = require('fs');
+        var path = require('path');
+        var logFile = path.join(config.get('logs'), app.id + '.log');
+        fs.writeFile(logFile, '', function(err) {
+            if(err) {
+                return console.log(err);
+            }
+            console.log('The file was saved!');
+        }); 
         res.send(JSON.stringify(app));
     }).catch(function(e){
+        console.log(e);
         res.status(500).send(JSON.stringify(e));
     });
 
@@ -61,7 +72,7 @@ router.get('/deploy/:id', function(req, res){
     }).then(function(app){
         var q = require('../queues');
         q.create('deploy', app).priority('high').save();
-        res.send(JSON.stringify());
+        res.send(JSON.stringify(app));
     }).catch(function(e){
         res.status(500).send(JSON.stringify(e));
     });

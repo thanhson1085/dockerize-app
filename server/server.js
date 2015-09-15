@@ -37,22 +37,14 @@ app.use(function(req, res, next){
     next();
 });
 
+// websocket 
+var expressWs = require('express-ws');
+expressWs(app);
+
 // auth
 app.use(require('./middlewares/users'));
 app.use(require('./apis'));
-
-
-// websocket 
-var expressWs = require('express-ws')(app);
-app.ws('/', function(ws, req) {
-    ws.on('message', function(msg) {
-        console.log('fadsfl');
-    });
-    ws.on('connection', function (socket) {
-        socket.emit('files', 'test');
-    });
-    console.log('socket', 'test');
-});
+app.ws('/api/v1/logs', require('./websockets/logs'));
 
 // Start web server at port 3000
 db.sequelize.sync().then(function () {

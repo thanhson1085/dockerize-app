@@ -1,5 +1,8 @@
 {
     "services":{
+        "websockets": {
+            "logs": "ws://192.168.1.191:3001/api/v1/logs"
+        },
         "users": {
             "list": "http://192.168.1.191:3000/api/v1/users/list/:page/:limit",
             "login": "http://192.168.1.191:3000/api/v1/users/login",
@@ -9,8 +12,9 @@
             "github": "http://192.168.1.191:3001/api/v1/users/github"
         },
         "apps": {
-            "list": "http://192.168.1.191:3001/api/v1/apps/list/:page/:limit",
+            "list": "http://192.168.1.191:3001/api/v1/apps/list/:UserId/:page/:limit",
             "get": "http://192.168.1.191:3001/api/v1/apps/view/:id",
+            "deploy": "http://192.168.1.191:3001/api/v1/apps/deploy/:id",
             "getByAppName": "http://192.168.1.191:3001/api/v1/apps/getByAppName?appName=:appName",
             "create": "http://192.168.1.191:3001/api/v1/apps/create",
             "update": "http://192.168.1.191:3001/api/v1/apps/update/:id"

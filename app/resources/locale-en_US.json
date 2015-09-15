@@ -4,6 +4,7 @@
   "directives.sidebar.Deployments": "Deployments",
   "directives.sidebar.Logs": "Logs",
   "directives.sidebar.Monitor": "Monitor",
+  "views.app.deploy.App": "views.app.deploy.App",
   "views.app.view.App": "views.app.view.App",
   "views.apps.view.AppName": "views.apps.view.AppName",
   "views.apps.view.AwsAccessKeyId": "views.apps.view.AwsAccessKeyId",

@@ -1,24 +1,24 @@
 'use strict';
-angular.module('DockerizeApp').factory('Websocket', function($websocket) {
-    // Open a WebSocket connection
-    var dataStream = $websocket('ws://192.168.1.191:3001/');
+angular.module('DockerizeApp').factory('Websocket', function($websocket, APP_CONFIG) {
+    return {
+        logs: function(id){
+            // Open a WebSocket connection
+            var dataStream = $websocket(APP_CONFIG.services.websockets.logs);
 
-    var collection = [];
+            var collection = ['', 'Loading ... \n'];
 
-    dataStream.onMessage(function(message) {
-        console.log(message);
-        collection.push(JSON.parse(message.data));
-    });
-    dataStream.onOpen(function(message) {
-        console.log(message);
-    });
+            dataStream.onMessage(function(message) {
+                collection.push(message.data);
+            });
 
-    var methods = {
-        collection: collection,
-        get: function() {
-            dataStream.send(JSON.stringify({ action: 'get' }));
+            dataStream.onOpen(function() {
+                dataStream.send(id);
+            });
+            var methods = {
+                collection: collection,
+            };
+
+            return methods;
         }
     };
-
-    return methods;
-})
+});

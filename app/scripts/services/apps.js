@@ -18,6 +18,20 @@ angular.module('DockerizeApp').factory('Apps', function($http, httpi, $q, APP_CO
             }).error(deferred.reject);
             return deferred.promise;
         },
+        deploy: function(id){
+            var deferred = $q.defer();
+            var url = APP_CONFIG.services.apps.deploy;
+            httpi({
+                method: 'GET',
+                url: url,
+                data: {
+                    id: id
+                }
+            }).success(function(data) {
+                deferred.resolve(data);
+            }).error(deferred.reject);
+            return deferred.promise;
+        },
         get: function(id){
             var deferred = $q.defer();
             var url = APP_CONFIG.services.apps.get;

@@ -15,7 +15,8 @@
         "username": "",
         "password": ""
     },
-    "unauthorization": ["/api/v1/users/login", "/api/v1/users/create"],
+    "logs": "/home/thanhson1085/projects/dockerize-app/logs/",
+    "unauthorization": ["/api/v1/users/login", "/api/v1/users/create", "/api/v1/logs"],
     "github": {
         "client_secret": ""
     },

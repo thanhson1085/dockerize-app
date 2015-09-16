@@ -15,10 +15,12 @@ angular.module('DockerizeApp')
         replace: true,
         scope: {
         },
-        controller:function($scope){
+        controller:function($scope, $stateParams){
             $scope.selectedMenu = 'dashboard';
             $scope.collapseVar = 0;
             $scope.multiCollapseVar = 0;
+
+            $scope.appId = $stateParams.id;
 
             $scope.check = function(x){
 

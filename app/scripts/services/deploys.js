@@ -1,11 +1,11 @@
 'use strict';
-angular.module('DockerizeApp').factory('Apps', function($http, httpi, $q, APP_CONFIG) {
+angular.module('DockerizeApp').factory('Deploys', function($http, httpi, $q, APP_CONFIG) {
     return {
-        list: function(UserId, page, limit){
+        list: function(AppId, page, limit){
             var deferred = $q.defer();
-            var url = APP_CONFIG.services.apps.list;
+            var url = APP_CONFIG.services.deploys.list;
             var data = {
-                UserId: UserId,
+                AppId: AppId,
                 page: page,
                 limit: limit
             };
@@ -18,23 +18,9 @@ angular.module('DockerizeApp').factory('Apps', function($http, httpi, $q, APP_CO
             }).error(deferred.reject);
             return deferred.promise;
         },
-        deploy: function(id){
-            var deferred = $q.defer();
-            var url = APP_CONFIG.services.apps.deploy;
-            httpi({
-                method: 'GET',
-                url: url,
-                data: {
-                    id: id
-                }
-            }).success(function(data) {
-                deferred.resolve(data);
-            }).error(deferred.reject);
-            return deferred.promise;
-        },
         get: function(id){
             var deferred = $q.defer();
-            var url = APP_CONFIG.services.apps.get;
+            var url = APP_CONFIG.services.deploys.get;
             httpi({
                 method: 'GET',
                 url: url,
@@ -48,7 +34,8 @@ angular.module('DockerizeApp').factory('Apps', function($http, httpi, $q, APP_CO
         },
         create: function(data){
             var deferred = $q.defer();
-            var url = APP_CONFIG.services.apps.create;
+            var url = APP_CONFIG.services.deploys.create;
+            console.log(data);
             httpi({
                 method: 'POST',
                 url: url,
@@ -68,7 +55,7 @@ angular.module('DockerizeApp').factory('Apps', function($http, httpi, $q, APP_CO
         },
         update: function(data){
             var deferred = $q.defer();
-            var url = APP_CONFIG.services.apps.update;
+            var url = APP_CONFIG.services.deploys.update;
             httpi({
                 method: 'PUT',
                 url: url,
@@ -81,18 +68,6 @@ angular.module('DockerizeApp').factory('Apps', function($http, httpi, $q, APP_CO
                     return str.join('&');
                 },
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-            }).success(function(data) {
-                deferred.resolve(data);
-            }).error(deferred.reject);
-            return deferred.promise;
-        },
-        getByAppName: function(name){
-            var deferred = $q.defer();
-            var url = APP_CONFIG.services.apps.getByAppName;
-            httpi({
-                method: 'GET',
-                url: url,
-                data: {appName : name}
             }).success(function(data) {
                 deferred.resolve(data);
             }).error(deferred.reject);

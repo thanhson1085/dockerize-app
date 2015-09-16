@@ -15,10 +15,11 @@
         "username": "",
         "password": ""
     },
-    "unauthorization": ["/api/v1/users/login", "/api/v1/users/create"],
+    "logs": "/home/thanhson1085/projects/dockerize-app/logs/",
     "github": {
         "client_secret": ""
     },
+    "unauthorization": ["/api/v1/users/login", "/api/v1/users/create", "/api/v1/logs"],
     "mailer": {
         "from": "no-reply@example.com",
         "host": "smtp.gmail.com",

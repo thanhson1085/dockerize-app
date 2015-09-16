@@ -9,6 +9,14 @@
  */
 angular
 .module('DockerizeApp')
+.filter('nl2br', function($sce){
+    return function(msg,is_xhtml) { 
+        is_xhtml = is_xhtml || true;
+        var breakTag = (is_xhtml) ? '<br />' : '<br>';
+        msg = (msg + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ breakTag +'$2');
+        return $sce.trustAsHtml(msg);
+    };
+})
 .config(function ($translateProvider) {
     $translateProvider.useMissingTranslationHandlerLog();
 })
@@ -129,7 +137,8 @@ angular
                             'scripts/services/locale.js',
                             'scripts/directives/locale/locale.js',
                             'scripts/services/github.js',
-                            'scripts/services/apps.js'
+                            'scripts/services/apps.js',
+                            'scripts/services/deploys.js'
                         ]
                     });
             }
@@ -218,7 +227,65 @@ angular
                     name:'DockerizeApp',
                     files:[
                         'scripts/controllers/apps.js',
+                        'scripts/services/deploys.js',
+                        'scripts/services/apps.js'
+                    ]
+                });
+            }
+        }
+    })
+    .state('dashboard.app_deploys',{
+        templateUrl:'views/apps/deploys.html',
+        controller:'DeploysAppCtrl',
+        url:'/app/deploys/:id',
+        resolve: {
+            loadMyFiles:function($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name:'DockerizeApp',
+                    files:[
+                        'scripts/controllers/apps.js',
+                        'scripts/services/deploys.js',
+                    ]
+                });
+            }
+        }
+    })
+    .state('dashboard.app_monitor',{
+        templateUrl:'views/apps/monitor.html',
+        controller:'MonitorAppCtrl',
+        url:'/app/monitor/:id',
+        resolve: {
+            loadMyFiles:function($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name:'DockerizeApp',
+                });
+            }
+        }
+    })
+    .state('dashboard.app_logs',{
+        templateUrl:'views/apps/logs.html',
+        controller:'LogsAppCtrl',
+        url:'/app/logs/:id',
+        resolve: {
+            loadMyFiles:function($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name:'DockerizeApp',
+                });
+            }
+        }
+    })
+    .state('dashboard.app_deploy',{
+        templateUrl:'views/apps/deploy.html',
+        controller:'DeployAppCtrl',
+        url:'/app/deploy/:id',
+        resolve: {
+            loadMyFiles:function($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name:'DockerizeApp',
+                    files:[
+                        'scripts/controllers/apps.js',
                         'scripts/services/apps.js',
+                        'scripts/services/websocket.js'
                     ]
                 });
             }

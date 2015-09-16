@@ -11,6 +11,7 @@
     "ejs": "^2.3.3",
     "email-templates": "^2.0.1",
     "express": "^4.13.3",
+    "express-ws": "^0.2.6",
     "grunt-locales": "git+https://github.com/thanhson1085/grunt-locales.git",
     "js-yaml": "^3.4.0",
     "kue": "^0.9.4",
@@ -23,7 +24,8 @@
     "request": "^2.61.0",
     "sequelize": "^3.6.0",
     "sqlite3": "^3.1.0",
-    "swagger-ui": "^2.1.2"
+    "swagger-ui": "^2.1.2",
+    "tail": "^0.4.0"
   },
   "devDependencies": {
     "grunt": "^0.4.1",

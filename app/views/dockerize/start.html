@@ -12,10 +12,19 @@
             </div>
         </div>
     </div>
-    <div class="row" style="float: right">
-        <a ng-click="connectGithub()" class="btn btn-block btn-success" style="text-align: right">
-            <i class="fa fa-github-square"></i> <span translate="views.dockerize.start.ConnectGithub"></span>
-        </a>
+    <div class="row">
+
+        <div class="col-xs-8">
+        </div>
+        <div class="col-xs-4" class="pull-right">
+            <a ng-click="connectGithub()" class="btn btn-block btn-success" class="pull-left">
+                <i class="fa fa-github-square"></i> <span translate="views.dockerize.start.ConnectGithub"></span>
+            </a>
+        </div>
+    </div>
+    <div class="row" ng-repeat="app in apps">
+        <hr />
+        <a ui-sref="dashboard.app_view({id: app.id})">{{app.appName}}</a>
     </div>
 
 </div>

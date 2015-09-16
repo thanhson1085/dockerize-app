@@ -33,7 +33,7 @@ router.post('/create', function(req, res){
 router.get('/list/:AppId/:page/:limit', function(req, res){
     var limit = (req.params.limit)? req.params.limit: 10;
     var offset = (req.params.page)? limit * (req.params.page - 1): 0;
-    var UserId = req.params.UserId;
+    var AppId = req.params.AppId;
     db.Deploy.findAndCountAll({
         include: [],
         where:{

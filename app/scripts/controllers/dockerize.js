@@ -74,8 +74,22 @@ angular.module('DockerizeApp')
         };
         
     })
-    .controller('DockerizeCtrl', function($scope, APP_CONFIG, $cookies, $location, Apps) {
+    .controller('DockerizeCtrl', function($scope, APP_CONFIG, $cookies, $location, Apps, Deploys) {
         $scope.dockerize = true;
+
+        var userInfo = $cookies.get('user_info');
+        try{
+            userInfo = JSON.parse(userInfo);
+            if (!('id' in userInfo)){
+                throw '';
+            }
+        } catch (e) {
+            $location.path('/login');
+        }
+
+        Apps.list(userInfo.id, 1,10).then(function(data){
+            $scope.apps = data.rows
+        });
 
         $scope.connectGithub = function(){
             var url = 'https://github.com/login/oauth/authorize?scope=repo&client_id=' + 

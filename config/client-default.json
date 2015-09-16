@@ -18,6 +18,12 @@
             "getByAppName": "http://192.168.1.191:3001/api/v1/apps/getByAppName?appName=:appName",
             "create": "http://192.168.1.191:3001/api/v1/apps/create",
             "update": "http://192.168.1.191:3001/api/v1/apps/update/:id"
+        },
+        "deploys": {
+            "list": "http://192.168.1.191:3001/api/v1/deploys/list/:AppId/:page/:limit",
+            "get": "http://192.168.1.191:3001/api/v1/deploys/view/:id",
+            "create": "http://192.168.1.191:3001/api/v1/deploys/create",
+            "update": "http://192.168.1.191:3001/api/v1/deploys/update/:id"
         }
     },
     "pagination":{

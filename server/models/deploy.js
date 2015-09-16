@@ -3,7 +3,6 @@ module.exports = function(sequelize, DataTypes){
     var Deploy = sequelize.define('Deploy', {
         deployStatus: {
             type: DataTypes.STRING,
-            unique: true,
             allowNull: false,
         },
         logFile: {

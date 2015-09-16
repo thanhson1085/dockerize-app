@@ -3,16 +3,16 @@
         <ul class="nav in" id="side-menu">
             <sidebar-search></sidebar-search>
             <li ui-sref-active="active">
-                <a ui-sref="dashboard"><i class="fa fa-gears fa-fw"></i> <span translate="directives.sidebar.AppSettings"></span></a>
+            <a ui-sref="dashboard.app_view({ id: appId })"><i class="fa fa-gears fa-fw"></i> <span translate="directives.sidebar.AppSettings"></span></a>
             </li>
             <li>
-                <a ui-sref="dashboard"><i class="fa fa-th fa-fw"></i> <span translate="directives.sidebar.Deployments"></span></a>
+            <a ui-sref="dashboard.app_deploys({ id: appId })"><i class="fa fa-th fa-fw"></i> <span translate="directives.sidebar.Deployments"></span></a>
             </li>
             <li>
-                <a ui-sref="dashboard"><i class="fa fa-linux fa-fw"></i> <span translate="directives.sidebar.Monitor"></span></a>
+            <a ui-sref="dashboard.app_monitor({ id: appId })"><i class="fa fa-linux fa-fw"></i> <span translate="directives.sidebar.Monitor"></span></a>
             </li>
             <li>
-                <a ui-sref="dashboard"><i class="fa fa-television fa-fw"></i> <span translate="directives.sidebar.Logs"></span></a>
+            <a ui-sref="dashboard.app_logs({ id: appId })"><i class="fa fa-television fa-fw"></i> <span translate="directives.sidebar.Logs"></span></a>
             </li>
         </ul>
     </div>

@@ -12,23 +12,27 @@
             </div>
         </div>
     </div>
-    <div class="row" style="margin-bottom: 20px;">
-    <section>
-        <strong translate="views.dockerize.confirm.DockerFile"></strong>
-        <div ui-ace="" ng-model="appData.dockerFile">
+    <div class="row">
+        <div class="col-xs-8">
         </div>
-    </section>
-    </div>
-    <div class="row" style="margin-bottom: 20px;">
-    <section>
-        <strong translate="views.dockerize.confirm.DockerCompose"></strong>
-        <div ui-ace="" ng-model="appData.dockerCompose">
+        <div class="col-xs-4" class="pull-right">
+            <a class="btn btn-block btn-success" ui-sref="dockerize.deploy">
+                <i class="fa fa-paper-plane"></i> <span translate="views.dockerize.github.Next"></span>
+            </a>
         </div>
     </div>
-    </section>
-    <div class="row" style="float: right">
-        <a class="btn btn-block btn-success" style="text-align: right" ui-sref="dockerize.deploy">
-            <i class="fa fa-paper-plane"></i> <span translate="views.dockerize.github.Next"></span>
-        </a>
+    <div class="row" style="margin-bottom: 20px;">
+        <section>
+            <strong translate="views.dockerize.confirm.DockerFile"></strong>
+            <div ui-ace="" ng-model="appData.dockerFile">
+            </div>
+        </section>
+    </div>
+    <div class="row" style="margin-bottom: 20px;">
+        <section>
+            <strong translate="views.dockerize.confirm.DockerCompose"></strong>
+            <div ui-ace="" ng-model="appData.dockerCompose">
+            </div>
+        </section>
     </div>
 </div>

@@ -21,6 +21,9 @@ angular.module('DockerizeApp')
             $scope.multiCollapseVar = 0;
 
             $scope.appId = $stateParams.id;
+            $scope.$on('$locationChangeSuccess', function() { 
+                $scope.appId = $stateParams.id;
+            });
 
             $scope.check = function(x){
 

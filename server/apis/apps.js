@@ -15,15 +15,14 @@ router.post('/create', function(req, res){
         dockerFile: req.body.dockerFile,
         dockerCompose: req.body.dockerCompose
     }).then(function(app){
+        // create log dir
         var fs = require('fs');
         var path = require('path');
-        var logFile = path.join(config.get('logs'), app.id + '.log');
-        fs.writeFile(logFile, '', function(err) {
-            if(err) {
-                return console.log(err);
-            }
-            console.log('The file was saved!');
-        }); 
+        var logDir = path.join(config.get('logs'), app.id.toString());
+        if (!fs.existsSync(logDir)){
+                fs.mkdirSync(logDir);
+        }
+
         res.send(JSON.stringify(app));
     }).catch(function(e){
         console.log(e);
@@ -42,6 +41,7 @@ router.get('/list/:UserId/:page/:limit', function(req, res){
         where:{
             UserId: UserId
         },
+        order: 'id DESC',
         limit: limit,
         offset: offset
 
@@ -65,14 +65,15 @@ router.get('/view/:id', function(req, res){
 
 // deploy app
 router.get('/deploy/:id', function(req, res){
-    db.App.findOne({
+    db.Deploy.findOne({
         where: {
             id: req.params.id
-        }
-    }).then(function(app){
+        },
+        include: [db.App]
+    }).then(function(deploy){
         var q = require('../queues');
-        q.create('deploy', app).priority('high').save();
-        res.send(JSON.stringify(app));
+        q.create('deploy', deploy).priority('high').save();
+        res.send(JSON.stringify(deploy));
     }).catch(function(e){
         res.status(500).send(JSON.stringify(e));
     });

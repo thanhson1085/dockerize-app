@@ -20,13 +20,13 @@ angular.module('DockerizeApp')
         });
     };
     $scope.deploy = function(){
-        Apps.deploy($stateParams.id).then(function(){
-            var data = $scope.app;
-            data.appId = $scope.app.id;
-            data.deployStatus = 'RUNNING';
-            delete data.id;
-            Deploys.create(data).then(function(){
-                $location.path('/dashboard/app/deploy/' + $stateParams.id);
+        var data = $scope.app;
+        data.appId = $scope.app.id;
+        data.deployStatus = 'RUNNING';
+        delete data.id;
+        Deploys.create(data).then(function(data){
+            Apps.deploy(data.id).then(function(){
+                $location.path('/dashboard/app/deploy/' + data.id);
             });
         });
     };

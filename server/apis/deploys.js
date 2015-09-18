@@ -7,7 +7,7 @@ var express = require('express'),
 // new deployments
 router.post('/create', function(req, res){
     var path = require('path');
-    var logFile = path.join(config.get('logs'), req.body.appId + '.log');
+    var logFile = '';
     db.Deploy.create({
         AppId: req.body.appId,
         deployStatus: req.body.deployStatus,
@@ -21,7 +21,21 @@ router.post('/create', function(req, res){
 	awsSecretAccessKey: req.body.awsSecretAccessKey,
 	awsVpcId: req.body.awsVpcId
     }).then(function(deploy){
-        res.send(JSON.stringify(deploy));
+        var fs = require('fs');
+        var path = require('path');
+        var logFile = path.join(config.get('logs'), deploy.AppId.toString(), deploy.id.toString() + '.log');
+
+        deploy.updateAttributes({
+            logFile: logFile
+        }).then(function() {
+            fs.writeFile(logFile, '', function(err) {
+                if(err) {
+                    return console.log(err);
+                }
+                console.log('The file was saved!');
+            });
+            res.send(JSON.stringify(deploy));
+        });
     }).catch(function(e){
         console.log(e);
         res.status(500).send(JSON.stringify(e));
@@ -39,6 +53,7 @@ router.get('/list/:AppId/:page/:limit', function(req, res){
         where:{
             AppId: AppId
         },
+        order: 'id DESC',
         limit: limit,
         offset: offset
 

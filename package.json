@@ -12,7 +12,6 @@
     "email-templates": "^2.0.1",
     "express": "^4.13.3",
     "express-ws": "^0.2.6",
-    "git-cli": "^0.8.3",
     "grunt-locales": "git+https://github.com/thanhson1085/grunt-locales.git",
     "js-yaml": "^3.4.0",
     "kue": "^0.9.4",

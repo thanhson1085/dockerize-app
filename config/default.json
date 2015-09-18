@@ -16,6 +16,10 @@
         "password": ""
     },
     "logs": "/home/thanhson1085/projects/dockerize-app/logs/",
+    "repositories": "/home/thanhson1085/projects/dockerize-app/repositories/",
+    "bash": {
+        "deploy": "/home/thanhson1085/projects/dockerize-app/bash/deploy.sh"
+    },
     "github": {
         "client_secret": ""
     },

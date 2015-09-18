@@ -6,7 +6,6 @@ var express = require('express'),
 
 // new deployments
 router.post('/create', function(req, res){
-    var path = require('path');
     var logFile = '';
     db.Deploy.create({
         AppId: req.body.appId,
@@ -81,12 +80,12 @@ router.put('/update/:id', function(req, res){
         where: {
             id: req.params.id
         } 
-    }).then(function(app) {
-        if (app) {
-            app.updateAttributes({
+    }).then(function(deploy) {
+        if (deploy) {
+            deploy.updateAttributes({
                 deployStatus: req.body.deployStatus
-            }).then(function() {
-                res.send(JSON.stringify(deploy));
+            }).then(function(d) {
+                res.send(JSON.stringify(d));
             });
         }
     }).catch(function(e){

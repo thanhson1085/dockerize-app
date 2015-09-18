@@ -74,7 +74,7 @@ angular.module('DockerizeApp')
         };
         
     })
-    .controller('DockerizeCtrl', function($scope, APP_CONFIG, $cookies, $location, Apps, Deploys) {
+    .controller('DockerizeCtrl', function($scope, APP_CONFIG, $cookies, $location, Apps) {
         $scope.dockerize = true;
 
         var userInfo = $cookies.get('user_info');
@@ -88,7 +88,7 @@ angular.module('DockerizeApp')
         }
 
         Apps.list(userInfo.id, 1,10).then(function(data){
-            $scope.apps = data.rows
+            $scope.apps = data.rows;
         });
 
         $scope.connectGithub = function(){

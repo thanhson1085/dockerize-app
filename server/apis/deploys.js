@@ -53,6 +53,7 @@ router.get('/list/:AppId/:page/:limit', function(req, res){
         where:{
             AppId: AppId
         },
+        order: 'id DESC',
         limit: limit,
         offset: offset
 

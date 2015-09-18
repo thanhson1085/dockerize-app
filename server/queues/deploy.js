@@ -8,15 +8,23 @@ consumer.name = 'deploy';
 consumer.task = function(job, done){
     var data = job.data;
     var spawn = require('child_process').spawn;
+    var exec = require('child_process').exec;
     var path = require('path');
 
     var dest = path.join(config.get('repositories'), data.App.appName);
+    var logStream = fs.createWriteStream(data.logFile, {flags: 'a'});
 
+    // remote repo if exists
+    if (fs.existsSync(dest)){
+        exec('rm -rf ' + dest);
+    }
+
+    // clone new source code
     var child = spawn('git', [
       'clone', '--verbose', '--progress', data.gitUrl, dest
     ]);
 
-    child.on('close', function (code) {
+    child.on('exit', function (code) {
         // create docker file
         var dockerFile = path.join(dest, 'Dockerfile');
         fs.writeFile(dockerFile, data.dockerFile);
@@ -31,18 +39,22 @@ consumer.task = function(job, done){
             DOCKER_BUILD_TAG: data.App.appName,
             DOCKER_BUILD_PATH: dest
         }
-        var deploy = spawn(config.get('bash.deploy'), [], {env: env});
+        var deployNextStep = {
+            logFile: data.logFile,
+            params: [config.get('bash.deploy')],
+            env: {env: env},
+            cmd: 'bash',
+            id: data.id
+        }
+        var q = require('../queues');
+        q.create('deployNextStep', deployNextStep).priority('high').save();
 
-        // save log
-        deploy.stdout.pipe(logStream);
-        deploy.stderr.pipe(logStream);
 
     });
-
     // save log to file
-    var logStream = fs.createWriteStream(data.logFile, {flags: 'a'});
     child.stdout.pipe(logStream);
     child.stderr.pipe(logStream);
+
 
 
     done();

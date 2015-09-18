@@ -41,6 +41,7 @@ router.get('/list/:UserId/:page/:limit', function(req, res){
         where:{
             UserId: UserId
         },
+        order: 'id DESC',
         limit: limit,
         offset: offset
 

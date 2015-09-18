@@ -3,16 +3,24 @@
 - Login Page
 - Register Page
 - Dockerize a application 
+- Deploy App to AWS
 - Supports multiple languages
 - Supports Send Email in Queue
 
 ## Installation
+To run this application, you have to have NODEJS (recommended node 0.10.37), NPM, REDIS, SQLITE3, GIT, GRUNT, BOWER.
   - Run `bower install`
   - Run `npm install`
 
+## Configuration
+Before running the application, you have to create config file to match with your enviroment. I create two sample config files. One for client, the other one for server.
+```
+cp config/client-default.js config/client-dev.js
+cp config/default.js config/dev.js
+```
 
 ## Run
-  - Run `npm start`
+  - Run `NODE_ENV=dev npm start`
   - Run `grunt test` to make sure the application work perfectly
 
 ## Demo

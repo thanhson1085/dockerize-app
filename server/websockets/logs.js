@@ -25,7 +25,9 @@ module.exports = function(ws) {
 
                 // tail file
                 tail.on('line', function(data) {
-                    ws.send(data + '\n');
+                    try {
+                        ws.send(data + '\n');
+                    } catch(e){}
                 });
 
             } catch(e){

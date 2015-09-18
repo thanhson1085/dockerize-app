@@ -43,9 +43,9 @@ angular.module('DockerizeApp')
     });
     $scope.forUnitTest = true;
 })
-.controller('MonitorAppCtrl', function($scope, $stateParams) {
+.controller('MonitorAppCtrl', function($scope) {
     $scope.forUnitTest = true;
 })
-.controller('LogsAppCtrl', function($scope, $stateParams) {
+.controller('LogsAppCtrl', function($scope) {
     $scope.forUnitTest = true;
 });

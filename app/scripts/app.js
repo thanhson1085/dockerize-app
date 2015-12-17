@@ -367,7 +367,9 @@ angular
         request: function (config) {
             var user_info = $cookies.get('user_info') || '{}';
             $rootScope.user_info = JSON.parse(user_info);
-            config.headers.Authorization = $rootScope.user_info.token;
+            if (config.url.indexOf('github.com') < 0) {
+                config.headers.Authorization = $rootScope.user_info.token;
+            }
             return config;
         }
     };

@@ -1,5 +1,5 @@
 'use strict';
-angular.module('sbAdminApp').factory('Helper', function ($cookies) {
+angular.module('DockerizeApp').factory('Helper', function ($cookies) {
     return {
         getOptionValueByKey: function (key, options) {
             var ret = options.filter(function(option){

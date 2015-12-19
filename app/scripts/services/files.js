@@ -1,5 +1,5 @@
 'use strict';
-angular.module('sbAdminApp').factory('Files', function (Upload, $q, APP_CONFIG) {
+angular.module('DockerizeApp').factory('Files', function (Upload, $q, APP_CONFIG) {
     return {
         upload: function (files) {
             var deferred = $q.defer();

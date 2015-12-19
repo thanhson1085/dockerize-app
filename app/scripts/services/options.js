@@ -1,5 +1,5 @@
 'use strict';
-angular.module('sbAdminApp').factory('Options', function(Helper, $http, httpi, $q, APP_CONFIG) {
+angular.module('DockerizeApp').factory('Options', function(Helper, $http, httpi, $q, APP_CONFIG) {
     return {
         list: function(page, limit){
             var deferred = $q.defer();

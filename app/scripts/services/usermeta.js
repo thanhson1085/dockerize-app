@@ -1,5 +1,5 @@
 'use strict';
-angular.module('sbAdminApp').factory('Usermeta', function($http, httpi, $q, APP_CONFIG) {
+angular.module('DockerizeApp').factory('Usermeta', function($http, httpi, $q, APP_CONFIG) {
     return {
         list: function(page, limit){
             var deferred = $q.defer();

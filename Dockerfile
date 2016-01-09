@@ -2,13 +2,15 @@ FROM ubuntu:14.04
 MAINTAINER Nguyen Sy Thanh Son <thanhson1085@gmail.com>
 
 RUN apt-get update && \
-    apt-get install -y supervisor sqlite3 build-essential wget
-RUN apt-get install -y python-pip python-dev git
+    apt-get install -y supervisor \
+    sqlite3 build-essential wget \
+    python-pip python-dev git
+
 RUN \
     cd /tmp && \
-    wget http://nodejs.org/dist/node-latest.tar.gz && \
-    tar xvzf node-latest.tar.gz && \
-    rm -f node-latest.tar.gz && \
+    wget http://nodejs.org/dist/v4.2.2/node-v4.2.2.tar.gz && \
+    tar xvzf node-v4.2.2.tar.gz && \
+    rm -f node-v4.2.2.tar.gz && \
     cd node-v* && \
     ./configure && \
     CXX="g++ -Wno-unused-local-typedefs" make && \
